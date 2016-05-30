@@ -121,7 +121,7 @@
     <value>&lt;Glide Version="1.0.7"&gt;
   &lt;Window Name="inicio" Width="320" Height="240" BackColor="33cc33"&gt;
     &lt;Button Name="button_iniciar" X="120" Y="104" Width="80" Height="32" Alpha="255" Text="Iniciar" Font="5" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
-    &lt;TextBlock Name="text_net_status" X="0" Y="0" Width="320" Height="32" Alpha="255" Text="No Network" TextAlign="Left" TextVerticalAlign="Center" Font="5" FontColor="0" BackColor="000000" ShowBackColor="False"/&gt;
+    &lt;TextBlock Name="text_net_status" X="0" Y="0" Width="320" Height="32" Alpha="255" Text="" TextAlign="Left" TextVerticalAlign="Center" Font="5" FontColor="0" BackColor="000000" ShowBackColor="False"/&gt;
   &lt;/Window&gt;
 &lt;/Glide&gt;</value>
     <comment>Ventana inicial</comment>
