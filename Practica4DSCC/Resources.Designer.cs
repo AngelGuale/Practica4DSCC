@@ -37,6 +37,7 @@ namespace Practica4DSCC
         internal enum StringResources : short
         {
             inicioWindow = -1979,
+            window2 = 21005,
         }
         [System.SerializableAttribute()]
         internal enum FontResources : short

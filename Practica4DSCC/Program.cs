@@ -17,6 +17,7 @@ using Gadgeteer.Modules.GHIElectronics;
 using GHI.Glide;
 using GHI.Glide.Display;
 using GHI.Glide.UI;
+using System.Globalization;
 
 namespace Practica4DSCC
 {
@@ -24,6 +25,7 @@ namespace Practica4DSCC
     {
         //Objetos de interface gráfica GLIDE
         private GHI.Glide.Display.Window iniciarWindow;
+        private GHI.Glide.Display.Window window2;
         private Button btn_inicio;
         GT.Timer timer;
         HttpRequest request;
@@ -51,6 +53,8 @@ namespace Practica4DSCC
 
             //Carga la ventana principal
             iniciarWindow = GlideLoader.LoadWindow(Resources.GetString(Resources.StringResources.inicioWindow));
+            GlideTouch.Initialize();
+            window2 = GlideLoader.LoadWindow(Resources.GetString(Resources.StringResources.window2));
             GlideTouch.Initialize();
 
             //Inicializa el boton en la interface
@@ -87,6 +91,12 @@ namespace Practica4DSCC
         {
             Debug.Print("Resp");
             Debug.Print(response.Text);
+            TextBlock te = (TextBlock)window2.GetChildByName("temp");
+            te.Text = response.Text+" Grados";
+            ProgressBar pb = (ProgressBar)window2.GetChildByName("barra1");
+            pb.Value = (int)System.Math.Ceiling(Convert.ToDouble(response.Text));
+            Glide.MainWindow = window2;
+
         }
 
         void ethernetJ11D_NetworkUp(GTM.Module.NetworkModule sender, GTM.Module.NetworkModule.NetworkState state)
@@ -104,7 +114,7 @@ namespace Practica4DSCC
            TextBlock te=(TextBlock) iniciarWindow.GetChildByName("text_net_status");
            te.Text = "Estado: No Network";
            Glide.MainWindow = iniciarWindow;
-
+           timer.Stop();
          
         }
 
@@ -112,9 +122,15 @@ namespace Practica4DSCC
         {
             Debug.Print("Iniciar");
             Debug.Print(ethernetJ11D.NetworkInterface.IPAddress);
-            TextBlock te = (TextBlock)iniciarWindow.GetChildByName("text_net_status");
-            te.Text = "IP es "+ethernetJ11D.NetworkInterface.IPAddress;
             timer.Start();
+            TextBlock ti = (TextBlock)window2.GetChildByName("titulo");
+            ti.Text = "Temperatura";
+
+            TextBlock te = (TextBlock)window2.GetChildByName("temp");
+            te.Text = "Calculando..";
+
+           
+            Glide.MainWindow = window2;
         }
     }
 }
